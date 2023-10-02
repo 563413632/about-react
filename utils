@@ -1,5 +1,35 @@
-//获取[n,m]之间的随机整数
-export const getInt =  function (n, m) {
+/* getInt: 获取[n,m]之间的随机整数，包含n和m
+ *  @params
+ *    n [number] 区间左界限
+ *    m [number] 区间右界限
+ *  @return
+ *    [number] [n,m]中的某一个整数
+ * by Zry on 20230930
+ *
+ */
+export const getInt = function (n, m) {
   return Math.floor(Math.random() * (m - n + 1)) + n;
-}
+};
 
+/* unique: 数组去重
+ *  @params
+ *    arr [Array] 要去重的数组
+ *  @return
+ *    [Array] 去重后的数组
+ * by Zry on 20231002
+ *
+ */
+export const unique = function (arr) {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    let item = arr[i];
+    if (obj[item] !== undefined) {
+      arr[i] = arr[arr.length - 1];
+      arr.length--;
+      i--;
+      continue;
+    }
+    obj[item] = item;
+  }
+  return arr;
+}
