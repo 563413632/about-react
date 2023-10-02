@@ -34,14 +34,14 @@ export const unique = function (arr) {
   return arr;
 }
 
-/* formartTime：格式化日期为「xxxx年xx月xx日 xx时xx分xx秒」的格式
+/* formatTime：格式化日期为「xxxx年xx月xx日 xx时xx分xx秒」的格式
  *   @params
  *      TIME [Date] 要格式化的日期
  *   @return
  *      [Date] 格式化后的日期
  * by Zry on 20231002
  */
-export const formartTime = function (TIME) {
+export const formatTime = function (TIME) {
   /* 获取日期的分隔符 */
   let sign = TIME.match(/\D/);
   /* 格式化年月日 */
