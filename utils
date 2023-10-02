@@ -34,54 +34,37 @@ export const unique = function (arr) {
   return arr;
 }
 
-/* formatTime：格式化日期为「xxxx年xx月xx日 xx时xx分xx秒」的格式
+/* formartDate：格式化日期为「xxxx年xx月xx日 xx时xx分xx秒」的格式
  *   @params
  *      TIME [Date] 要格式化的日期
  *   @return
  *      [Date] 格式化后的日期
  * by Zry on 20231002
  */
-export const formatTime = function (TIME) {
-  /* 获取日期的分隔符 */
-  let sign = TIME.match(/\D/);
-  /* 格式化年月日 */
-  let date = TIME.split(" ");
-  let tempDate = date[0].split(sign);
-  let year = formatDate(tempDate[0]);
-  let mouth = formatDate(tempDate[1]);
-  let day = formatDate(tempDate[2]);
-  /* 格式化时分秒 */
-  tempDate = date[1].split(":");
-  let hour = formatDate(tempDate[0]);
-  let minute = formatDate(tempDate[1]);
-  let second = formatDate(tempDate[2]);
-  /* 格式化Date */
-  date =
-    "" +
-    year +
+/* addZero：不足两位，首位补零
+ *   @params
+ *      time [string | number] 要格式化的数值
+ *   @return
+ *      [number] 格式化后的数值
+ * by Zry on 20231002
+ */
+export const formartDate = function (TIME) {
+  const addZero = (val) => (val.length < 2 ? "0" + val : val);
+  /* 获取年月日时分秒 */
+  let timeArr = TIME.split(/(?:\.| |\/|-|\\|:)/g);
+  let date =
+    timeArr[0] +
     "年" +
-    mouth +
+    addZero(timeArr[1]) +
     "月" +
-    day +
+    addZero(timeArr[2]) +
     "日" +
     " " +
-    hour +
+    addZero(timeArr[3]) +
     "时" +
-    minute +
+    addZero(timeArr[4]) +
     "分" +
-    second +
+    addZero(timeArr[5]) +
     "秒";
-  /* formatDate：格式化小于10的数为0开头的格式的方法
-   *   @params
-   *      time [string | number] 要格式化的数值
-   *   @return
-   *      [number] 格式化后的数值
-   * by Zry on 20231002
-   */
-  function formatDate(time) {
-    //去除首位的0
-    time = Number(time);
-    time = +time < 10 ? "0" + time : time;
-    return time;
-  }
-}
+  return date;
+};
